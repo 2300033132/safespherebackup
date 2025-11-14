@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ShieldCheck, UserPlus, LogIn, Mail, Lock, User, Eye, EyeOff, AlertCircle } from "lucide-react";
 
 function VolunteerAuth() {
+   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -71,6 +73,8 @@ const handleSubmit = async (e) => {
     const data = await response.json();
     alert(isLogin ? "Volunteer logged in successfully!" : "Volunteer registered successfully!");
     console.log(data);
+    
+      navigate("/VolunteerDashboard");
   } catch (error) {
     alert("Something went wrong: " + error.message);
   }
